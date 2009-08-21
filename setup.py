@@ -14,8 +14,6 @@ from distutils.command.install_data import install_data
 from distutils.command.install import INSTALL_SCHEMES
 import sys
 
-import pypidl
-
 packages, data_files = [], []
 root_dir = os.path.dirname(__file__)
 if root_dir != '':
@@ -67,17 +65,19 @@ for dirpath, dirnames, filenames in os.walk(src_dir):
 
 setup(
     name='pypidl',
-    version=pypidl.__version__,
-    description=pypidl.__doc__,
-    author=pypidl.__author__,
-    author_email=pypidl.__contact__,
-    url=pypidl.__homepage__,
+    version="0.1.0",
+    description="Download packages from an PyPI index.",
+    author="Ask Solem",
+    author_email="askh@opera.com",
+    url="http://github.com/ask",
     platforms=["any"],
     packages=packages,
     data_files=data_files,
     zip_safe=False,
     test_suite="nose.collector",
+    scripts=["bin/pypi_download"],
     install_requires=[
+        'yolk',
     ],
     classifiers=[
         "Development Status :: 4 - Beta",

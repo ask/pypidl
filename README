@@ -7,7 +7,12 @@ pypidl - Download package from PyPI
 Introduction
 ============
 
-.. Please write an introduction to your package here.
+Library and command line application to download packages from PyPI.
+The main reason for creating this is because `yolk`_ doesn't work with
+custom PyPI index servers, and I have not, os of yet, received any reply
+on the status of this bug.
+
+.. _`yolk`: http://pypi.python.org/pypi/yolk
 
 Installation
 ============
@@ -34,4 +39,51 @@ by doing the following,::
 Examples
 ========
 
-.. Please write some examples using your package here.
+Command line examples
+----------------------
+
+Getting help::
+
+    $ pypi_download --help
+
+Download a package from a custom index server (also remove any existing local
+files)::
+
+    $ pypi_download --unlink -i http://chishop.example.com myapp
+    myapp-0.4.2.tar.gz
+
+Download a package with explicit version::
+
+    $ pypi_download --version=0.4.1 yolk
+
+Download package to custom destination directory::
+
+    $ pypi_download --version=0.4.1 yolk --dest=/tmp
+
+
+Library examples
+----------------
+
+Download a package from a custom index server (also remove any existing local
+files):
+
+    >>> from pypidl import download_package
+    >>> download_package(package="myapp", directory=".", unlink=True,
+    ...                  index="http://chishop.example.com")
+
+    
+Download a package with explicit version::
+
+    >>> from pypidl import download_package
+    >>> download_package(package="yolk", directory=".", unlink=True,
+                         version="0.4.1")
+
+Contact
+-------
+
+Ask Solem <askh@opera.com>
+
+License
+-------
+
+BSD License
